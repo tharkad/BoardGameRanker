@@ -59,7 +59,7 @@ public class GameController : MonoBehaviour {
         sprite = Sprite.Create(www.texture, new Rect(0, 0, www.texture.width, www.texture.height), new Vector2(0, 0), 100.0f);
         transform.localScale = new Vector3(scaleFactor, scaleFactor, scaleFactor);
         float yPos = transform.position.y;
-        transform.position = new Vector3((-widthInUnits / 2.0f) - 0.1f, yPos, 0);
+        transform.position = new Vector3((-widthInUnits / 2.0f), yPos, 0);
 
         renderer.sprite = sprite;
 
