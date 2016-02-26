@@ -30,8 +30,8 @@ public class GameController : MonoBehaviour {
     {
         float scaleFactor;
         float newWidth;
-        float unitPixels;
-        float widthInUnits;
+        //float unitPixels;
+        //float widthInUnits;
         //float ScreenWidthInUnits;
 
         downloading = true;
@@ -41,10 +41,10 @@ public class GameController : MonoBehaviour {
 
         SpriteRenderer renderer = gameObject.GetComponent<SpriteRenderer>();
 
-        Camera camera = Camera.main;
-        Vector3 screenPos0 = camera.WorldToScreenPoint(new Vector3(0.0f, 0.0f, 0.0f));
-        Vector3 screenPos1 = camera.WorldToScreenPoint(new Vector3(1.0f, 0.0f, 0.0f));
-        unitPixels = screenPos1.x - screenPos0.x;
+        //Camera camera = Camera.main;
+        //Vector3 screenPos0 = camera.WorldToScreenPoint(new Vector3(0.0f, 0.0f, 0.0f));
+        //Vector3 screenPos1 = camera.WorldToScreenPoint(new Vector3(1.0f, 0.0f, 0.0f));
+        //unitPixels = screenPos1.x - screenPos0.x;
         //Vector3 ScreenDims = camera.ScreenToWorldPoint(new Vector3(Screen.width, Screen.height, 0));
         //ScreenWidthInUnits = ScreenDims.x * 2;
 
@@ -53,13 +53,13 @@ public class GameController : MonoBehaviour {
         if (newWidth > 240.0f)
             scaleFactor = 240.0f / www.texture.width;
         newWidth = www.texture.width * scaleFactor;
-        widthInUnits = newWidth / unitPixels;
+        //widthInUnits = newWidth / unitPixels;
 
         Sprite sprite = new Sprite();
         sprite = Sprite.Create(www.texture, new Rect(0, 0, www.texture.width, www.texture.height), new Vector2(0, 0), 100.0f);
         transform.localScale = new Vector3(scaleFactor, scaleFactor, scaleFactor);
         float yPos = transform.position.y;
-        transform.position = new Vector3((-widthInUnits / 2.0f), yPos, 0);
+        transform.position = new Vector3((-(sprite.bounds.extents.x / 2.0f)), yPos, 0);
 
         renderer.sprite = sprite;
 
