@@ -34,16 +34,16 @@ public class StartGame : MonoBehaviour {
 
         PlayerPrefs.SetInt("CurrentScore", 0);
 
-        DownloadRanks();
+        StartCoroutine(DownloadRanks());
     }
 
-    public void DownloadRanks()
+    public IEnumerator DownloadRanks()
     {
         FadeShow script;
 
         WWW www = new WWW(rankURL);
         while (!www.isDone)
-            ;
+        yield return www;
 
         if (www.error != null)
         {
