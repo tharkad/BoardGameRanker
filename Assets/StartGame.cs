@@ -16,7 +16,6 @@ public class StartGame : MonoBehaviour {
     public GameObject start_canvas;
     public GameObject disconnected_canvas;
 
-
     void Start()
     {
         GameSetup();
@@ -33,6 +32,29 @@ public class StartGame : MonoBehaviour {
         }
 
         PlayerPrefs.SetInt("CurrentScore", 0);
+
+        bool playMusic = false;
+        if (PlayerPrefs.HasKey("Music"))
+        {
+            if (PlayerPrefs.GetInt("Music") == 1)
+            {
+                playMusic = true;
+            }
+        }
+        else
+        {
+            playMusic = true;
+            PlayerPrefs.SetInt("Music", 1);
+        }
+
+        if (playMusic)
+        {
+            AudioSource source = GetComponent<AudioSource>();
+            source.Play(0);
+        }
+
+        if (!PlayerPrefs.HasKey("Effects"))
+            PlayerPrefs.SetInt("Effects", 1);
 
         StartCoroutine(DownloadRanks());
     }
